@@ -6,8 +6,6 @@ class Answers extends Component {
         return (
             <div>
                 <Answer/>
-                <Answer/>
-                <Answer/>
             </div>
         );
     }

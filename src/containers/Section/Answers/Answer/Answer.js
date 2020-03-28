@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Input from '../../../../components/UI/Input/Input';
 
 class Answer extends Component {
 
@@ -8,7 +9,7 @@ class Answer extends Component {
 
     render() {
         return (
-            <h4>Answer</h4>
+            <Input />
         );
     }
 }
