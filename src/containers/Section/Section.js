@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Title from './Title/Title';
 import Question from './Question/Question'
+import classes from './Section.css';
 import Button from '../../components/UI/Button/Button';
 
 class Section extends Component {
@@ -12,7 +13,7 @@ class Section extends Component {
 
     render() {
         return (
-            <div>
+            <div className={classes.Section}>
                 <Title />
                 <Question />
                 <Button btnType="Success">Submit</Button>
