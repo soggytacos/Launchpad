@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import Aux from '../../hoc/Aux';
-import Section from '../Section/Section';
+import MorningJournal from "../MorningJournal/MorningJournal";
 import Button from '../../components/UI/Button/Button';
+import ToDo from '../ToDo/ToDo';
 
 class Launchpad extends Component {
 
@@ -16,7 +17,8 @@ class Launchpad extends Component {
             <Aux>
                 <h1>Hello Colman!</h1>
                 <Button btnType="Success">Add Section</Button>
-                <Section />
+                <MorningJournal />
+                <ToDo />
             </Aux>
         )
     }

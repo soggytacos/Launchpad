@@ -1,0 +1,41 @@
+.ToDo {
+    background-color: aliceblue;
+    width: 80%;
+
+}
+
+.toDoForm {
+    background-color: cornflowerblue;
+    min-height: 500px;
+    width: 400px;
+    margin: 40px auto;
+}
+
+.Input {
+ background-color: aliceblue;
+    border: 2px;
+    width: 200px;
+    height: 50px;
+    padding: 0 20px;
+    margin: 20px;
+    border-radius: 10px;
+    font-size: 18px;
+    color: black;
+}
+
+#to-do-form input::placeholder {
+    color: #ccc;
+}
+
+#to-do-form input:focus, #to-do-form button:focus {
+    outline: aqua;
+}
+.button {
+    height: 50px;
+    width: 80px;
+    border-radius: 0;
+    background-color: #5C9210;
+    cursor: pointer;
+    font-weight: bolder;
+    color: white;
+}
