@@ -1,44 +1,57 @@
 .ToDoForm {
-    background-color: cornflowerblue;
-    min-height: 500px;
-    margin: 40px auto;
-    width: 50%;
-
-}
-
-.Input {
-    background-color: aliceblue;
-    border: 2px;
-    width: 75%;
-    height: 40px;
-    padding: 0 10px;
-    margin-top: 10px;
-    margin-left: 10px;
-    border-radius: 10px;
-    font-size: 18px;
-    color: black;
-}
-
-/*.ToDoForm input::placeholder {*/
-/*    color: #ccc;*/
-/*}*/
-
-/*.ToDoForm input:focus, .ToDoForm button:focus {*/
-/*    outline: aqua;*/
-/*}*/
-
-.button {
-    border: 2px;
-    padding: 0 10px;
-    margin-top: 10px;
-    margin-left: 10px;
-    height: 40px;
-    width: 10%;
-    border-radius: 10px;
-    background-color: darkcyan;
-    cursor: pointer;
-    font-weight: bolder;
     color: white;
-    font-size: 18px;
-    text-align: center;
+    width: 90%;
+    background-color: darkcyan;
+    height: auto;
+    margin: 7px auto;
+    border-radius: 8px;
+    padding: 8px;
+    position: relative;
 }
+
+.ToDoItem span {
+    position: center;
+    right: 10px;
+    cursor: pointer;
+    width: 5%;
+}
+
+.Button {
+    margin: 0 5px;
+    font-size: 18px;
+}
+
+.ToDoForm input {
+    background-color: transparent;
+    border: 0;
+    width: 75%;
+    color: #fff;
+    font-size: 18px;
+}
+
+.DatePicker {
+    background-color: transparent;
+    border: 2px #eeeeee;
+    width: 10%;
+    color: #fff;
+    font-size: 18px;
+}
+
+.ToDoForm input:focus {
+    outline: none;
+}
+
+/*.Button {*/
+/*    border: 2px;*/
+/*    padding: 0 10px;*/
+/*    margin: 10px;*/
+/*    height: 40px;*/
+/*    width: 5%;*/
+/*    border-radius: 10px;*/
+/*    background-color: darkcyan;*/
+/*    cursor: pointer;*/
+/*    font-weight: bolder;*/
+/*    color: white;*/
+/*    font-size: 18px;*/
+/*    text-align: center;*/
+/*}*/

@@ -1,21 +1,19 @@
 .ToDoItem {
     color: white;
-    width: 80%;
+    width: 90%;
     background-color: darkcyan;
-    height: 40px;
+    height: 30px;
     margin: 7px auto;
     border-radius: 8px;
-}
-
-.ToDoItem p {
     padding: 8px;
     position: relative;
 }
 
-.ToDoItem p span {
+.ToDoItem span {
     position: absolute;
     right: 10px;
     cursor: pointer;
+    width: 5%;
 }
 
 .Faicons {
@@ -23,13 +21,14 @@
     font-size: 18px;
 }
 
-.ToDoItem p input {
+.ToDoItem input {
     background-color: transparent;
     border: 0;
+    width: 75%;
     color: #fff;
     font-size: 18px;
 }
 
-.ToDoItem p input:focus {
+.ToDoItem input:focus {
     outline: none;
 }
