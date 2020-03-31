@@ -1,0 +1,35 @@
+.ToDoItem {
+    color: white;
+    width: 80%;
+    background-color: darkcyan;
+    height: 40px;
+    margin: 7px auto;
+    border-radius: 8px;
+}
+
+.ToDoItem p {
+    padding: 8px;
+    position: relative;
+}
+
+.ToDoItem p span {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+
+.Faicons {
+    margin: 0 5px;
+    font-size: 18px;
+}
+
+.ToDoItem p input {
+    background-color: transparent;
+    border: 0;
+    color: #fff;
+    font-size: 18px;
+}
+
+.ToDoItem p input:focus {
+    outline: none;
+}

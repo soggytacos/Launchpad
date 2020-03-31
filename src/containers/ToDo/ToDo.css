@@ -1,41 +1,44 @@
-.ToDo {
-    background-color: aliceblue;
-    width: 80%;
-
-}
-
-.toDoForm {
+.ToDoForm {
     background-color: cornflowerblue;
     min-height: 500px;
-    width: 400px;
     margin: 40px auto;
+    width: 50%;
+
 }
 
 .Input {
- background-color: aliceblue;
+    background-color: aliceblue;
     border: 2px;
-    width: 200px;
-    height: 50px;
-    padding: 0 20px;
-    margin: 20px;
+    width: 75%;
+    height: 40px;
+    padding: 0 10px;
+    margin-top: 10px;
+    margin-left: 10px;
     border-radius: 10px;
     font-size: 18px;
     color: black;
 }
 
-#to-do-form input::placeholder {
-    color: #ccc;
-}
+/*.ToDoForm input::placeholder {*/
+/*    color: #ccc;*/
+/*}*/
 
-#to-do-form input:focus, #to-do-form button:focus {
-    outline: aqua;
-}
+/*.ToDoForm input:focus, .ToDoForm button:focus {*/
+/*    outline: aqua;*/
+/*}*/
+
 .button {
-    height: 50px;
-    width: 80px;
-    border-radius: 0;
-    background-color: #5C9210;
+    border: 2px;
+    padding: 0 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    height: 40px;
+    width: 10%;
+    border-radius: 10px;
+    background-color: darkcyan;
     cursor: pointer;
     font-weight: bolder;
     color: white;
+    font-size: 18px;
+    text-align: center;
 }
