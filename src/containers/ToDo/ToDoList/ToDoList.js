@@ -17,6 +17,7 @@ const toDoList = (props) => {
                     }}
                 />
                 <span>
+                    {item.key}
                     <FontAwesomeIcon
                         icon="trash"
                         onClick={() => props.deleteItem(item.key)}

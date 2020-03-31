@@ -13,7 +13,7 @@ class ToDo extends Component {
             items: [],
             currentItem: {
                 text: '',
-                key: ''
+                key: '',
             }
         }
         this.handleInput = this.handleInput.bind(this);
@@ -23,10 +23,11 @@ class ToDo extends Component {
     }
 
     handleInput(e) {
+        let now = new Date().toLocaleDateString("en-US");
         this.setState({
             currentItem: {
                 text: e.target.value,
-                key: Date.now()
+                key: now
             }
         })
     }
