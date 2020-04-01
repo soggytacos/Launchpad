@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Aux from '../../hoc/Aux';
 import MorningJournal from "../MorningJournal/MorningJournal";
 import Button from '../../components/UI/Button/Button';
+import Quotes from "../Quotes/Quotes";
 import ToDo from '../ToDo/ToDo';
 
 class Launchpad extends Component {
@@ -16,7 +17,7 @@ class Launchpad extends Component {
         return (
             <Aux>
                 <h1>Hello Colman!</h1>
-                <Button btnType="Success">Add Section</Button>
+                <Quotes />
                 <MorningJournal />
                 <ToDo />
             </Aux>

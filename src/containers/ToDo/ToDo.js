@@ -5,7 +5,6 @@ import {library} from "@fortawesome/fontawesome-svg-core";
 import {faTrash} from "@fortawesome/free-solid-svg-icons";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css'
-import PropTypes from 'prop-types';
 import setHours from "date-fns/setMinutes";
 import setMinutes from "date-fns/setMinutes";
 
@@ -15,7 +14,6 @@ class ToDo extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedDate: '',
             items: [],
             currentItem: {
                 text: '',
@@ -52,7 +50,6 @@ class ToDo extends Component {
             const newItems = [...this.state.items, newItem];
             this.setState({
                 items: newItems,
-                selectedDate: '',
                 currentItem: {
                     text: '',
                     key: '',
