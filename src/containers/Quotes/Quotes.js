@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Aux from '../../hoc/Aux';
+import QuoteList from './QuoteList/QuoteList';
 
 class Quotes extends Component {
     constructor(props) {
@@ -17,9 +18,11 @@ class Quotes extends Component {
         this.handleNewQuoteAuthorChange = this.handleNewQuoteAuthorChange.bind(this);
     }
 
-    handleAddQuote = () => {
+    handleAddQuote(e){
+        e.preventDefault();
         const nQuote = {...this.state.newQuote};
         if (nQuote.text !== "") {
+            nQuote.dateAdded = Date.now();
             const existingQuotes = [...this.state.quotes, nQuote];
             this.setState({
                 quotes: existingQuotes,
@@ -30,6 +33,7 @@ class Quotes extends Component {
                 }
             })
         }
+        console.log(this.state);
     }
 
 
@@ -61,9 +65,8 @@ class Quotes extends Component {
                         <input type="text" value={this.state.newQuote.author} onChange={this.handleNewQuoteAuthorChange}/>
                         <button type="submit" onClick={this.handleAddQuote}>Add New Quote</button>
                     </form>
-
                 </div>
-                <h2>{this.state.quotes}</h2>
+            <QuoteList quotes={this.state.quotes}/>
             </Aux>
         );
     }
