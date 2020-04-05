@@ -22,6 +22,7 @@ class ToDo extends Component {
                 estimatedHours: '',
                 estimatedMinutes: ''
             },
+            totalPoints: 0
         }
         this.handleInput = this.handleInput.bind(this);
         this.addItem = this.addItem.bind(this);
@@ -51,6 +52,7 @@ class ToDo extends Component {
 
     addItem(e) {
         e.preventDefault();
+        const currentPoints = this.state.totalPoints;
         const newItem = this.state.currentItem;
         if (newItem.text !== "") {
             const newItems = [...this.state.items, newItem];
@@ -62,14 +64,22 @@ class ToDo extends Component {
                     dueDate: '',
                     estimatedHours: '',
                     estimatedMinutes: ''
-                }
+                },
+                totalPoints: currentPoints
             })
         }
     }
 
     deleteItem(key) {
         const filteredItems = this.state.items.filter(item => item.key !== key);
-        this.setState({items: filteredItems})
+        const itemsToDelete = this.state.items.filter(item => item.key === key);
+        const itemToDelete = itemsToDelete[0];
+        let points = Number(this.state.totalPoints);
+        points = points + Number(itemToDelete.estimatedMinutes) + (Number(itemToDelete.estimatedHours) * 60);
+        this.setState({
+            items: filteredItems,
+            totalPoints: points
+        })
     }
 
     setUpdateText(text, key) {
@@ -131,6 +141,7 @@ class ToDo extends Component {
     render() {
         return (
             <div>
+                <div><h2>Total Points: {this.state.totalPoints}</h2></div>
                 <div>
                     <DatePicker
                         onChange={date => this.handleDueDate(date)}

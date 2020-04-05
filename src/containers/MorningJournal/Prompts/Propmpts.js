@@ -66,7 +66,6 @@ class Prompts extends Component {
                 id: key,
                 prompt: this.state.prompts[key]
             })
-            console.log(promptsArray)
         }
 
         let form = (
