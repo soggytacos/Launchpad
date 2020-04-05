@@ -18,15 +18,21 @@ class ToDo extends Component {
             currentItem: {
                 text: '',
                 key: '',
-                dueDate: ''
-            }
+                dueDate: '',
+                estimatedHours: '',
+                estimatedMinutes: ''
+            },
         }
         this.handleInput = this.handleInput.bind(this);
         this.addItem = this.addItem.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
-        this.setUpdate = this.setUpdate.bind(this);
+        this.setUpdateText = this.setUpdateText.bind(this);
         this.handleDueDate = this.handleDueDate.bind(this);
         this.changeDueDate = this.changeDueDate.bind(this);
+        this.changeEstimatedHours = this.changeEstimatedHours.bind(this);
+        this.changeEstimatedMinutes = this.changeEstimatedMinutes.bind(this);
+        this.setUpdateHours = this.setUpdateHours.bind(this);
+        this.setUpdateMinutes = this.setUpdateMinutes.bind(this);
     }
 
     handleInput(e) {
@@ -53,7 +59,9 @@ class ToDo extends Component {
                 currentItem: {
                     text: '',
                     key: '',
-                    dueDate: ''
+                    dueDate: '',
+                    estimatedHours: '',
+                    estimatedMinutes: ''
                 }
             })
         }
@@ -64,11 +72,33 @@ class ToDo extends Component {
         this.setState({items: filteredItems})
     }
 
-    setUpdate(text, key) {
+    setUpdateText(text, key) {
         const items = this.state.items;
         items.map(item => {
                 if (item.key === key) {
                     item.text = text;
+                }
+            }
+        )
+        this.setState({items: items})
+    }
+
+    setUpdateHours(hours, key) {
+        const items = this.state.items;
+        items.map(item => {
+                if (item.key === key) {
+                    item.estimatedHours = hours;
+                }
+            }
+        )
+        this.setState({items: items})
+    }
+
+    setUpdateMinutes(minutes, key) {
+        const items = this.state.items;
+        items.map(item => {
+                if (item.key === key) {
+                    item.estimatedMinutes = minutes;
                 }
             }
         )
@@ -86,11 +116,23 @@ class ToDo extends Component {
         this.setState({items: items})
     }
 
+    changeEstimatedHours = (hours) => {
+        const newItem = {...this.state.currentItem}
+        newItem.estimatedHours = hours.target.value;
+        this.setState({currentItem: newItem})
+    }
+
+    changeEstimatedMinutes = (minutes) => {
+        const newItem = {...this.state.currentItem}
+        newItem.estimatedMinutes = minutes.target.value;
+        this.setState({currentItem: newItem})
+    }
+
     render() {
         return (
             <div>
-                <div className={classes.ToDoForm}>
-                    <DatePicker className={classes.DatePicker}
+                <div>
+                    <DatePicker
                         onChange={date => this.handleDueDate(date)}
                         selected={this.state.currentItem.dueDate}
                         showTimeSelect
@@ -108,14 +150,28 @@ class ToDo extends Component {
                         value={this.state.currentItem.text}
                         onChange={this.handleInput}
                     />
+                    <input
+                        type="number"
+                        placeholder="Estimated Hours"
+                        value={this.state.currentItem.estimatedHours}
+                        onChange={this.changeEstimatedHours}
+                    />
+                    <input
+                        type="number"
+                        placeholder="Estimated Minutes"
+                        value={this.state.currentItem.estimatedMinutes}
+                        onChange={this.changeEstimatedMinutes}
+                    />
                     <span>
-                        <button className={classes.Button} onClick={this.addItem} type="submit">+</button>
+                        <button onClick={this.addItem} type="submit">+</button>
                     </span>
                 </div>
                 <ToDoList
                     items={this.state.items}
                     deleteItem={this.deleteItem}
-                    setUpdate={this.setUpdate}
+                    setUpdateText={this.setUpdateText}
+                    setUpdateMinutes={this.setUpdateMinutes}
+                    setUpdateHours={this.setUpdateHours}
                     changeDueDate={this.changeDueDate}
                 />
             </div>

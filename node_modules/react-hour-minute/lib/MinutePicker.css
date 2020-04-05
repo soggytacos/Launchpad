@@ -1,0 +1,25 @@
+.MinutePicker {
+  display: inline-block;
+  margin: 20px;
+}
+
+.MinutePicker__minute {
+  display: block;
+  color: #565a5c;
+  padding: 20px;
+}
+
+.MinutePicker__arrow {
+  display: block;
+  padding: 10px 20px;
+  border: 1px solid #dce0e0;
+  border-radius: 3px;
+  background-color: #fff;
+  color: #757575;
+  cursor: pointer;
+}
+
+.MinutePicker__arrow:active {
+  background: #99ede6;
+  color: #007a87;
+}
