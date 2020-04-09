@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import classes from './ToDo.css';
 import ToDoList from './ToDoList/ToDoList';
 import {library} from "@fortawesome/fontawesome-svg-core";
 import {faTrash} from "@fortawesome/free-solid-svg-icons";
@@ -7,6 +6,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css'
 import setHours from "date-fns/setMinutes";
 import setMinutes from "date-fns/setMinutes";
+import Button from '@material-ui/core/Button';
 
 library.add(faTrash);
 
@@ -174,7 +174,7 @@ class ToDo extends Component {
                         onChange={this.changeEstimatedMinutes}
                     />
                     <span>
-                        <button onClick={this.addItem} type="submit">+</button>
+                        <Button onClick={this.addItem} type="submit">ADD</Button>
                     </span>
                 </div>
                 <ToDoList

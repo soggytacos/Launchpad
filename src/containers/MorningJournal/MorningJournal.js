@@ -33,6 +33,7 @@ class MorningJournal extends Component {
     }
 
     render() {
+
         return (
             <Aux>
                 <h1>Morning Journal</h1>
