@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Aux from '../../../hoc/Aux';
+import Aux from '../../../../../hoc/Aux';
 import TimePicker from "react-hour-minute/src/TimePicker";
 import {Checkbox} from "@material-ui/core";
 

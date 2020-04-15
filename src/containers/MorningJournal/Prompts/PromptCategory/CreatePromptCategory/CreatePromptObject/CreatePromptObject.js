@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Aux from '../../../../../hoc/Aux';
+import Aux from '../../../../../../hoc/Aux';
 import {Checkbox} from "@material-ui/core";
 
 class CreatePromptObject extends Component {

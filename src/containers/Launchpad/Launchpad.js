@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import Aux from '../../hoc/Aux';
 import MorningJournal from "../MorningJournal/MorningJournal";
-import Button from '../../components/UI/Button/Button';
 import Quotes from "../Quotes/Quotes";
 import ToDo from '../ToDo/ToDo';
 import Prompts from '../MorningJournal/Prompts/Propmpts';
+import PromptSection from '../MorningJournal/Prompts/PromptSection';
 
 class Launchpad extends Component {
 
@@ -22,6 +22,7 @@ class Launchpad extends Component {
                 <MorningJournal />
                 <ToDo />
                 <Prompts />
+                <PromptSection />
             </Aux>
         )
     }

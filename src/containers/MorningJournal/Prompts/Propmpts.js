@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import Aux from '../../../hoc/Aux';
+import Button  from "@material-ui/core/Button";
+import CreatePromptCategory from "./PromptCategory/CreatePromptCategory/CreatePromptCategory";
 
 class Prompts extends Component {
 
@@ -35,7 +38,7 @@ class Prompts extends Component {
                 timestamp: ''
             }
         },
-        answered: false
+        answered: false,
     }
 
     changeHandler = (answer, prompt) => {
@@ -105,6 +108,7 @@ class Prompts extends Component {
             <div>
                 {this.state.answered ? completedPrompts : form}
             </div>
+
         );
     }
 }
