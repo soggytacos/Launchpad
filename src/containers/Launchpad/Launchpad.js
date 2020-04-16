@@ -5,6 +5,7 @@ import Quotes from "../Quotes/Quotes";
 import ToDo from '../ToDo/ToDo';
 import Prompts from '../MorningJournal/Prompts/Propmpts';
 import PromptSection from '../MorningJournal/Prompts/PromptSection';
+import DNDTutorial from "../../DNDTutorial/DNDTutorial";
 
 class Launchpad extends Component {
 
@@ -18,6 +19,7 @@ class Launchpad extends Component {
         return (
             <Aux>
                 <h1>Hello Colman!</h1>
+                <DNDTutorial />
                 <Quotes />
                 <MorningJournal />
                 <ToDo />
