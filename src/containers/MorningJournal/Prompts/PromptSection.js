@@ -11,12 +11,11 @@ class Prompts extends Component {
         categories: []
     }
 
-
-
     toggleAddCategory = () => {
+        const currentCategories = this.state.categories;
         this.setState({
-            ...this.state,
-            addingCategory: !this.state.addingCategory
+            addingCategory: !this.state.addingCategory,
+            categories: currentCategories
         })
     }
 
@@ -39,16 +38,19 @@ class Prompts extends Component {
                 id: key,
                 prompt: this.state.categories[key]
             })
+            console.log(promptCategories)
         }
 
         let displayCategories = (
             <div>
-                {promptCategories.map(category => (
-                    <PromptCategory
-                        key={category.id}
-                        categoryName={category.categoryName}
-                    />
-                ))}
+                {promptCategories.map(category => {
+                    return (
+                        <PromptCategory
+                            key={category.id}
+                            categoryName={category.prompt.categoryName}
+                        />
+                    )
+                })}
             </div>
         )
 

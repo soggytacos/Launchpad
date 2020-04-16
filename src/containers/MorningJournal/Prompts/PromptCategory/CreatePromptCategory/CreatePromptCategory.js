@@ -11,33 +11,40 @@ class CreatePromptCategory extends Component {
             category: {
                 categoryName: '',
                 id: ''
-            }
+            },
         }
     }
 
-    handleCategoryChange = (cat) => {
-        let newCategoryName = cat.target.value;
+    resetState() {
         this.setState({
             category: {
-                categoryName: newCategoryName
-            }
+                categoryName: '',
+                id: ''
+            },
+        });
+    }
+
+    handleCategoryChange = (e) => {
+        let newCategory = this.state.category;
+        newCategory.categoryName = e.target.value;
+        this.setState({
+            category: newCategory
         })
     }
 
     saveCategory = () => {
+        let newCategory = this.state.category;
+        newCategory.id = Date.now();
         this.setState({
-            category: {
-                id: Date.now()
-            }
+            category: newCategory
         })
         this.props.onSaveNewCategory(this.state.category)
+        this.resetState();
         this.props.toggleAddCategory()
-        console.log(this.state, "createCategory")
     }
 
     render() {
         return (
-
             <Dialog
                 open={this.props.open}
                 onClose={this.props.toggleAddCategory}
@@ -46,13 +53,12 @@ class CreatePromptCategory extends Component {
                 scroll={'body'}
                 maxWidth={"lg"}
                 fullWidth >
-
                 {
                     <div>
                         <h1>Create A Prompt Category</h1>
                         <textarea
                             style={{fontSize: "large", width: '100%', height: 250, marginTop: 10}}
-                            value={this.state.categoryName || ''}
+                            value={this.state.category.categoryName || ''}
                             onChange={(ev) => {this.handleCategoryChange(ev)}}
                         />
                         <DialogActions>
