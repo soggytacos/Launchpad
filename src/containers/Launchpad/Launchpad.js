@@ -20,13 +20,13 @@ class Launchpad extends Component {
         return (
             <Aux>
                 <h1>Hello Colman!</h1>
+                <Quotes />
+                <PromptSection />
+                <MorningJournal />
+                <Prompts />
+                <ToDo />
                 <DNDTutorial />
                 <HorizontalSection />
-                <Quotes />
-                <MorningJournal />
-                <ToDo />
-                <Prompts />
-                <PromptSection />
             </Aux>
         )
     }

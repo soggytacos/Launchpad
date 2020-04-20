@@ -32,23 +32,12 @@ const promptCategory = (props) => {
     return (
         <Card className={classes.root}>
             <CardContent>
-                <Typography className={classes.title} color="textSecondary" gutterBottom>
+                <Typography className={classes.title} variant="h5" color="textPrimary" gutterBottom>
                     {categoryName}
-                </Typography>
-                <Typography variant="h5" component="h2">
-                    This is where an object will go
-                </Typography>
-                <Typography className={classes.pos} color="textSecondary">
-                    adjective
-                </Typography>
-                <Typography variant="body2" component="p">
-                    well meaning and kindly.
-                    <br/>
-                    {'"a benevolent smile"'}
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Submit Answer</Button>
+                <Button size="small">Add Habit</Button>
             </CardActions>
         </Card>
     );

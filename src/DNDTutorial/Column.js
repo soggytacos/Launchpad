@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import styled from 'styled-components';
 import Task from './Task'
 import { Droppable, Draggable } from "react-beautiful-dnd";
+import Button from "@material-ui/core/Button";
 
 const Container = styled.div`
     margin: 8px;
@@ -46,6 +47,7 @@ export default class Column extends Component {
                 {provided => (
             <Container {...provided.draggableProps} ref={provided.innerRef}>
                 <Title {...provided.dragHandleProps}>{this.props.column.title}</Title>
+                <Button>add habit</Button>
                 <Droppable
                     droppableId={this.props.column.id}
                     // type={this.props.column.id === 'column-3' ? 'done' : 'active'}

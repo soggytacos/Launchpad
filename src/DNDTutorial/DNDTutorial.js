@@ -2,6 +2,8 @@ import React, {Component, PureComponent} from 'react';
 import Column from './Column';
 import {DragDropContext, Droppable} from "react-beautiful-dnd";
 import styled from "styled-components";
+import Aux from '../hoc/Aux';
+import Button from "@material-ui/core/Button";
 
 const Container = styled.div`
     display: flex;
@@ -20,9 +22,9 @@ class InnerList extends PureComponent {
     //     return true;
     // }
     render() {
-        const { column, taskMap, index } = this.props;
+        const {column, taskMap, index} = this.props;
         const tasks = column.taskIds.map(taskId => taskMap[taskId]);
-        return <Column column={column} tasks={tasks} index={index} />;
+        return <Column column={column} tasks={tasks} index={index}/>;
     }
 }
 
@@ -54,7 +56,39 @@ class DNDTutorial extends Component {
             },
         },
         columnOrder: ['column-1', 'column-2'],
+        newColumn: '',
     };
+
+    addColumn = () => {
+        const currentColumns = [...this.state.columns]
+        const newColumnOrder = [...this.state.columnOrder]
+        const columnName = this.state.newColumn;
+        newColumnOrder.push(columnName);
+        columnName.push({
+            id: columnName,
+            title: columnName,
+            taskIds: [],
+
+        })
+        currentColumns.push(columnName);
+        console.log(currentColumns)
+        console.log(newColumnOrder)
+
+        this.setState({
+            columnOrder: newColumnOrder,
+            newColumn: '',
+        })
+        console.log(this.state)
+    }
+
+    onAddColumnChange = (ev) => {
+        let columnName = {...this.state.newColumn}
+        columnName = ev.target.value;
+        this.setState({
+            ...this.state,
+            newColumn: columnName,
+        })
+    }
 
     onDragStart = (start) => {
         const homeIndex = this.state.columnOrder.indexOf(start.source.droppableId);
@@ -84,8 +118,8 @@ class DNDTutorial extends Component {
             return;
         }
 
-        if(type === 'column') {
-            const newColumnOrder =Array.from(this.state.columnOrder);
+        if (type === 'column') {
+            const newColumnOrder = Array.from(this.state.columnOrder);
             newColumnOrder.splice(source.index, 1);
             newColumnOrder.splice(destination.index, 0, draggableId);
 
@@ -152,38 +186,42 @@ class DNDTutorial extends Component {
 
     render() {
         return (
-            <DragDropContext
-                onDragEnd={this.onDragEnd}
-                onDragUpdate={this.onDragUpdate}
-                onDragStart={this.onDragStart}
-            >
-                <Droppable
-                    droppableId="all-columns"
-                    direction="horizontal"
-                    type="column"
+            <Aux>
+                <h1>Habit Tracker</h1>
+                <form onSubmit={this.addColumn}><input value={this.state.newColumn} onChange={(event) => this.onAddColumnChange(event)}/><Button type="submit">add category</Button></form>
+                <DragDropContext
+                    onDragEnd={this.onDragEnd}
+                    onDragUpdate={this.onDragUpdate}
+                    onDragStart={this.onDragStart}
                 >
-                    {provided => (
-                        <Container
-                            {...provided.droppableProps}
-                            ref={provided.innerRef}
-                        >
-                            {this.state.columnOrder.map((columnId, index) => {
-                                const column = this.state.columns[columnId];
-                                return (
-                                    <InnerList
-                                        key={column.id}
-                                        column={column}
-                                        taskMap={this.state.tasks}
-                                        index={index}
-                                    />
-                                );
-                                // const isDropDisabled = index < this.state.homeIndex;
-                            })}
-                            {provided.placeholder}
-                        </Container>
-                    )}
-                </Droppable>
-            </DragDropContext>
+                    <Droppable
+                        droppableId="all-columns"
+                        direction="horizontal"
+                        type="column"
+                    >
+                        {provided => (
+                            <Container
+                                {...provided.droppableProps}
+                                ref={provided.innerRef}
+                            >
+                                {this.state.columnOrder.map((columnId, index) => {
+                                    const column = this.state.columns[columnId];
+                                    return (
+                                        <InnerList
+                                            key={column.id}
+                                            column={column}
+                                            taskMap={this.state.tasks}
+                                            index={index}
+                                        />
+                                    );
+                                    // const isDropDisabled = index < this.state.homeIndex;
+                                })}
+                                {provided.placeholder}
+                            </Container>
+                        )}
+                    </Droppable>
+                </DragDropContext>
+            </Aux>
         )
     }
 }
