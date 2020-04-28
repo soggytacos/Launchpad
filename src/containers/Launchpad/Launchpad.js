@@ -7,6 +7,7 @@ import Prompts from '../MorningJournal/Prompts/Propmpts';
 import PromptSection from '../MorningJournal/Prompts/PromptSection';
 import DNDTutorial from "../../DNDTutorial/DNDTutorial";
 import HorizontalSection from "../../DNDTutorial/HorizonalSection";
+import HabitTracker from '../HabitTracker/HabitTracker';
 
 class Launchpad extends Component {
 
@@ -20,13 +21,14 @@ class Launchpad extends Component {
         return (
             <Aux>
                 <h1>Hello Colman!</h1>
-                <Quotes />
-                <PromptSection />
-                <MorningJournal />
-                <Prompts />
-                <ToDo />
+                <HabitTracker />
+                {/*<Quotes />*/}
+                {/*<PromptSection />*/}
+                {/*<MorningJournal />*/}
+                {/*<Prompts />*/}
+                {/*<ToDo />*/}
                 <DNDTutorial />
-                <HorizontalSection />
+                {/*<HorizontalSection />*/}
             </Aux>
         )
     }

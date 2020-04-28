@@ -1,8 +1,8 @@
 import React, {Component, PureComponent} from 'react';
-import Column from './Column';
+import Column from './HabitColumn';
 import {DragDropContext, Droppable} from "react-beautiful-dnd";
 import styled from "styled-components";
-import Aux from '../hoc/Aux';
+import Aux from '../../hoc/Aux';
 import Button from "@material-ui/core/Button";
 
 const Container = styled.div`
@@ -28,65 +28,49 @@ class InnerList extends PureComponent {
     }
 }
 
-class DNDTutorial extends Component {
+class HabitTracker extends Component {
 
     state = {
-        tasks: {
-            'task-1': {id: 'task-1', content: 'Take out the one'},
-            'task-2': {id: 'task-2', content: 'Take out the trafdsash'},
-            'task-3': {id: 'task-3', content: 'Take out the fdstrash'},
-            'task-4': {id: 'task-4', content: 'Take out the trabfdsh'},
-            'task-5': {id: 'task-5', content: 'Take out the trasfdssh'},
-            'task-6': {id: 'task-6', content: 'Take out the traskth'},
-            'task-7': {id: 'task-7', content: 'Take out the tranxfsesh'},
-            'task-8': {id: 'task-8', content: 'Take out the trasfsh'},
-            'task-9': {id: 'task-9', content: 'Take out the tragfdsggfdsgsh'},
-            'task-10': {id: 'task-10', content: 'Take out the trash'},
+        tasks: {},
+        columns: {},
+        columnOrder: [],
+        newColumn: {
+            id: '',
+            title: '',
+            taskIds: [],
         },
-        columns: {
-            'column-1': {
-                id: 'column-1',
-                title: 'To Do',
-                taskIds: ['task-1', 'task-2', 'task-3', 'task-4', 'task-5', 'task-6', 'task-7', 'task-8', 'task-9', 'task-10'],
-            },
-            'column-2': {
-                id: 'column-2',
-                title: 'In Progress',
-                taskIds: [],
-            },
-        },
-        columnOrder: ['column-1', 'column-2'],
-        newColumn: '',
     };
 
-    addColumn = () => {
-        const currentColumns = [...this.state.columns]
+    addColumn = (event) => {
+        event.preventDefault();
+        const currentColumns = {...this.state.columns}
         const newColumnOrder = [...this.state.columnOrder]
-        const columnName = this.state.newColumn;
-        newColumnOrder.push(columnName);
-        columnName.push({
-            id: columnName,
-            title: columnName,
-            taskIds: [],
+        const newColumn = {...this.state.newColumn};
+        newColumn.id = Date.now().toString();
+        newColumnOrder.push(newColumn.id);
 
-        })
-        currentColumns.push(columnName);
+        currentColumns[newColumn.id] = newColumn;
         console.log(currentColumns)
         console.log(newColumnOrder)
 
         this.setState({
+            ...this.state,
+            columns: currentColumns,
             columnOrder: newColumnOrder,
-            newColumn: '',
-        })
-        console.log(this.state)
+            newColumn: {
+                id: '',
+                title: '',
+                taskIds: [],
+            },
+        }, () => console.log(this.state))
     }
 
     onAddColumnChange = (ev) => {
-        let columnName = {...this.state.newColumn}
-        columnName = ev.target.value;
+        let columnToChange = {...this.state.newColumn};
+        columnToChange.title = ev.target.value;
         this.setState({
             ...this.state,
-            newColumn: columnName,
+            newColumn: columnToChange
         })
     }
 
@@ -180,7 +164,7 @@ class DNDTutorial extends Component {
             },
         };
 
-        this.setState(newState, () => console.log(this.state));
+        this.setState(newState);
 
     };
 
@@ -188,7 +172,7 @@ class DNDTutorial extends Component {
         return (
             <Aux>
                 <h1>Habit Tracker</h1>
-                <form onSubmit={this.addColumn}><input value={this.state.newColumn} onChange={(event) => this.onAddColumnChange(event)}/><Button type="submit">add category</Button></form>
+                <form onSubmit={this.addColumn}><input value={this.state.newColumn.title} onChange={(event) => this.onAddColumnChange(event)}/><Button type="submit">add category</Button></form>
                 <DragDropContext
                     onDragEnd={this.onDragEnd}
                     onDragUpdate={this.onDragUpdate}
@@ -226,4 +210,4 @@ class DNDTutorial extends Component {
     }
 }
 
-export default DNDTutorial;
+export default HabitTracker;
