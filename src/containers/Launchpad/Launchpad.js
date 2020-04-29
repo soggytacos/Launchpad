@@ -22,13 +22,13 @@ class Launchpad extends Component {
             <Aux>
                 <h1>Hello Colman!</h1>
                 <HabitTracker />
-                {/*<Quotes />*/}
-                {/*<PromptSection />*/}
-                {/*<MorningJournal />*/}
-                {/*<Prompts />*/}
-                {/*<ToDo />*/}
+                <Quotes />
+                <PromptSection />
+                <MorningJournal />
+                <Prompts />
+                <ToDo />
                 <DNDTutorial />
-                {/*<HorizontalSection />*/}
+                <HorizontalSection />
             </Aux>
         )
     }

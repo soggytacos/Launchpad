@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 import Task from './HabitTask'
-import { Droppable, Draggable } from "react-beautiful-dnd";
+import {Droppable, Draggable} from "react-beautiful-dnd";
 import Button from "@material-ui/core/Button";
+import Select from "@material-ui/core/Select";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
 
 const Container = styled.div`
     margin: 8px;
@@ -32,6 +35,7 @@ class InnerList extends Component {
         }
         return true;
     }
+
     render() {
         return this.props.tasks.map((task, index) => (
             <Task key={task.id} task={task} index={index}/>
@@ -40,14 +44,65 @@ class InnerList extends Component {
 }
 
 export default class Column extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            habitPrompt: '',
+            selectedAnswerType: '',
+            answerType: {
+                options: [
+                    {value: 'short', displayValue: 'Short Answer'},
+                    {value: 'paragraph', displayValue: 'Paragraph'},
+                    {value: 'duration', displayValue: 'Duration'},
+                    {value: 'checkbox', displayValue: 'Checkbox'},
+                    {value: 'radioFive', displayValue: 'Scale of 1 to 5'},
+                    {value: 'radioTen', displayValue: 'Scale of 1 to 10'},
+                    {value: 'number', displayValue: 'Number'},
+                ]
+            },
+        }
+    };
+
+    onAddHabitChange = (ev) => {
+        let columnToChange = {...this.state.newColumn};
+        columnToChange.title = ev.target.value;
+        this.setState({
+            ...this.state,
+            newColumn: columnToChange
+        })
+    }
+
     render() {
+
+        const answerTypes = [];
+        for (let key in this.state.answerType.options) {
+            answerTypes.push({
+                id: key,
+                value: this.state.answerType.options[key].value,
+                displayValue: this.state.answerType.options[key].displayValue
+            })
+        }
+        let answerTypeDropDown = (
+            <Select labelId="label" id="select" value={selectedAnswerType} onChange={handleChange}>
+                {answerTypes.map(element => (
+                    <MenuItem key={element.id} value={element.value}>{element.displayValue}</MenuItem>
+                    ))
+                }
+            </Select>
+        )
 
         return (
             <Draggable draggableId={this.props.column.id} index={this.props.index}>
                 {provided => (
                     <Container {...provided.draggableProps} ref={provided.innerRef}>
                         <Title {...provided.dragHandleProps}>{this.props.column.title}</Title>
-                        <Button>add habit</Button>
+                        <form onSubmit={this.addHabit}>
+                            <input value={this.state.habitPrompt} onChange={(event) => this.onAddHabitChange(event)}/>
+                            <InputLabel id="label">Answer Type</InputLabel>
+                            {answerTypeDropDown}
+                            <Button type="submit">add habit</Button>
+                        </form>
                         <Droppable
                             droppableId={this.props.column.id}
                             // type={this.props.column.id === 'column-3' ? 'done' : 'active'}
@@ -60,7 +115,7 @@ export default class Column extends Component {
                                     {...provided.droppableProps}
                                     isDraggingOver={snapshot.isDraggingOver}
                                 >
-                                    <InnerList tasks={this.props.tasks} />
+                                    <InnerList tasks={this.props.tasks}/>
                                     {provided.placeholder}
                                 </TaskList>
                             )}
