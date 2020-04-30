@@ -48,8 +48,11 @@ export default class Column extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            habitPrompt: '',
-            selectedAnswerType: '',
+            habit: {
+                habitId: '',
+                habitPrompt: '',
+                selectedAnswerType: '',
+            },
             answerType: {
                 options: [
                     {value: 'short', displayValue: 'Short Answer'},
@@ -65,11 +68,46 @@ export default class Column extends Component {
     };
 
     onAddHabitChange = (ev) => {
-        let columnToChange = {...this.state.newColumn};
-        columnToChange.title = ev.target.value;
+        let habitPr = ev.target.value;
         this.setState({
             ...this.state,
-            newColumn: columnToChange
+            habit: {
+                ...this.state.habit,
+                habitPrompt: habitPr
+            }
+        })
+    }
+
+    handleAnswerTypeChange = (ev) => {
+        let selectedAnswer = ev.target.value;
+        this.setState({
+            ...this.state,
+            habit: {
+                ...this.state.habit,
+                selectedAnswerType: selectedAnswer
+            }
+        })
+    }
+
+    addHabit = (ev) => {
+        ev.preventDefault();
+        let hId = Date.now().toString();
+        this.setState({
+            ...this.state,
+            habit: {
+                ...this.state.habit,
+                habitId: hId
+            }
+        }, () => {
+
+            let habit = {...this.state.habit}
+            let habitList = this.props.tasks
+            //add the habit to the list of habits
+            habitList[habit.habitId] = habit;
+            //add the habit to the column
+            this.props.column.taskIds.push(habit.habitId)
+            console.log(this.state)
+            console.log(this.props)
         })
     }
 
@@ -84,7 +122,7 @@ export default class Column extends Component {
             })
         }
         let answerTypeDropDown = (
-            <Select labelId="label" id="select" value={selectedAnswerType} onChange={handleChange}>
+            <Select labelId="label" id="select" value={this.state.habit.selectedAnswerType} onChange={this.handleAnswerTypeChange}>
                 {answerTypes.map(element => (
                     <MenuItem key={element.id} value={element.value}>{element.displayValue}</MenuItem>
                     ))
@@ -98,7 +136,7 @@ export default class Column extends Component {
                     <Container {...provided.draggableProps} ref={provided.innerRef}>
                         <Title {...provided.dragHandleProps}>{this.props.column.title}</Title>
                         <form onSubmit={this.addHabit}>
-                            <input value={this.state.habitPrompt} onChange={(event) => this.onAddHabitChange(event)}/>
+                            <input value={this.state.habit.habitPrompt} onChange={(event) => this.onAddHabitChange(event)}/>
                             <InputLabel id="label">Answer Type</InputLabel>
                             {answerTypeDropDown}
                             <Button type="submit">add habit</Button>

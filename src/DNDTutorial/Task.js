@@ -26,7 +26,8 @@ export default class Task extends Component {
                         isDragging={snapshot.isDragging}
                         {...provided.dragHandleProps}
                     >
-                        {this.props.task.content}
+                        {this.props.task.habitPrompt}
+                        {this.props.task.selectedAnswerType}
                     </Container>
                 )}
             </Draggable>
