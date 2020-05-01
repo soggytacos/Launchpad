@@ -14,7 +14,7 @@ class InnerList extends PureComponent {
     // shouldComponentUpdate(nextProps) {
     //     if(
     //         nextProps.column === this.props.column &&
-    //         nextProps.taskMap === this.props.taskMap &&
+    //         nextProps.habitMap === this.props.habitMap &&
     //         nextProps.index === this.props.index
     //     ) {
     //         return false;
@@ -22,22 +22,22 @@ class InnerList extends PureComponent {
     //     return true;
     // }
     render() {
-        const {column, taskMap, index} = this.props;
-        const tasks = column.taskIds.map(taskId => taskMap[taskId]);
-        return <Column column={column} tasks={tasks} index={index}/>;
+        const {column, habitMap, index} = this.props;
+        const habits = column.habitIds.map(habitId => habitMap[habitId]);
+        return <Column column={column} habits={habits} index={index}/>;
     }
 }
 
 class HabitTracker extends Component {
 
     state = {
-        tasks: {},
+        habits: {},
         columns: {},
         columnOrder: [],
         newColumn: {
             id: '',
             title: '',
-            taskIds: [],
+            habitIds: [],
         },
     };
 
@@ -60,7 +60,7 @@ class HabitTracker extends Component {
             newColumn: {
                 id: '',
                 title: '',
-                taskIds: [],
+                habitIds: [],
             },
         }, () => console.log(this.state))
     }
@@ -85,7 +85,7 @@ class HabitTracker extends Component {
 
     onDragUpdate = update => {
         const {destination} = update;
-        const opacity = destination ? destination.index / Object.keys(this.state.tasks).length : 0;
+        const opacity = destination ? destination.index / Object.keys(this.state.habits).length : 0;
         document.body.style.backgroundColor = `rgba(153, 151, 217, ${opacity})`;
     };
 
@@ -120,13 +120,13 @@ class HabitTracker extends Component {
 
         if (start === finish) {
 
-            const newTaskIds = Array.from(start.taskIds);
-            newTaskIds.splice(source.index, 1);
-            newTaskIds.splice(destination.index, 0, draggableId);
+            const newHabitIds = Array.from(start.habitIds);
+            newHabitIds.splice(source.index, 1);
+            newHabitIds.splice(destination.index, 0, draggableId);
 
             const newColumn = {
                 ...start,
-                taskIds: newTaskIds,
+                habitIds: newHabitIds,
             };
 
             const newState = {
@@ -141,18 +141,18 @@ class HabitTracker extends Component {
             return;
         }
 
-        const startTaskIds = Array.from(start.taskIds);
-        startTaskIds.splice(source.index, 1);
+        const startHabitIds = Array.from(start.habitIds);
+        startHabitIds.splice(source.index, 1);
         const newStart = {
             ...start,
-            taskIds: startTaskIds,
+            habitIds: startHabitIds,
         };
 
-        const finishTaskIds = Array.from(finish.taskIds);
-        finishTaskIds.splice(destination.index, 0, draggableId);
+        const finishHabitIds = Array.from(finish.habitIds);
+        finishHabitIds.splice(destination.index, 0, draggableId);
         const newFinish = {
             ...finish,
-            taskIds: finishTaskIds,
+            habitIds: finishHabitIds,
         };
 
         const newState = {
@@ -194,7 +194,7 @@ class HabitTracker extends Component {
                                         <InnerList
                                             key={column.id}
                                             column={column}
-                                            taskMap={this.state.tasks}
+                                            habitMap={this.state.habits}
                                             index={index}
                                         />
                                     );

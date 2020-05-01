@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
-import Task from './HabitTask'
+import Habit from './Habit'
 import {Droppable, Draggable} from "react-beautiful-dnd";
 import Button from "@material-ui/core/Button";
 import Select from "@material-ui/core/Select";
@@ -20,7 +20,7 @@ const Container = styled.div`
 const Title = styled.h3`
     padding: 8px;
 `;
-const TaskList = styled.div`
+const HabitList = styled.div`
     padding: 8px;
     transition: background-color 0.2s ease;
     background-color: ${props => (props.isDraggingOver ? 'lightgrey' : 'inherit')};
@@ -30,15 +30,15 @@ const TaskList = styled.div`
 
 class InnerList extends Component {
     shouldComponentUpdate(nextProps) {
-        if (nextProps.tasks === this.props.tasks) {
+        if (nextProps.habits === this.props.habits) {
             return false;
         }
         return true;
     }
 
     render() {
-        return this.props.tasks.map((task, index) => (
-            <Task key={task.id} task={task} index={index}/>
+        return this.props.habits.map((habit, index) => (
+            <Habit key={habit.id} habit={habit} index={index}/>
         ));
     }
 }
@@ -49,7 +49,7 @@ export default class Column extends Component {
         super(props);
         this.state = {
             habit: {
-                habitId: '',
+                id: '',
                 habitPrompt: '',
                 selectedAnswerType: '',
             },
@@ -69,11 +69,13 @@ export default class Column extends Component {
 
     onAddHabitChange = (ev) => {
         let habitPr = ev.target.value;
+        let hId = Date.now().toString();
         this.setState({
             ...this.state,
             habit: {
                 ...this.state.habit,
-                habitPrompt: habitPr
+                habitPrompt: habitPr,
+                id: hId
             }
         })
     }
@@ -90,25 +92,22 @@ export default class Column extends Component {
     }
 
     addHabit = (ev) => {
-        ev.preventDefault();
-        let hId = Date.now().toString();
+        let habit = {...this.state.habit};
+        let habitId = habit.habitPrompt.toString();
+        let habitList = this.props.habits;
+        habitList[habitId] = habit;
+        this.props.column.habitIds.push(habitId);
         this.setState({
             ...this.state,
             habit: {
-                ...this.state.habit,
-                habitId: hId
-            }
-        }, () => {
-
-            let habit = {...this.state.habit}
-            let habitList = this.props.tasks
-            //add the habit to the list of habits
-            habitList[habit.habitId] = habit;
-            //add the habit to the column
-            this.props.column.taskIds.push(habit.habitId)
-            console.log(this.state)
-            console.log(this.props)
+                id: '',
+                habitPrompt: '',
+                selectedAnswerType: '',
+            },
         })
+        console.log(this.state)
+        console.log(this.props)
+        ev.preventDefault();
     }
 
     render() {
@@ -145,17 +144,17 @@ export default class Column extends Component {
                             droppableId={this.props.column.id}
                             // type={this.props.column.id === 'column-3' ? 'done' : 'active'}
                             // isDropDisabled={this.props.isDropDisabled}
-                            type="task"
+                            type="habit"
                         >
                             {(provided, snapshot) => (
-                                <TaskList
+                                <HabitList
                                     ref={provided.innerRef}
                                     {...provided.droppableProps}
                                     isDraggingOver={snapshot.isDraggingOver}
                                 >
-                                    <InnerList tasks={this.props.tasks}/>
+                                    <InnerList habits={this.props.habits}/>
                                     {provided.placeholder}
-                                </TaskList>
+                                </HabitList>
                             )}
                         </Droppable>
                     </Container>

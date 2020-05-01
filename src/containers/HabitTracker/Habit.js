@@ -12,11 +12,11 @@ background-color: ${props => (props.isDragDisabled ? 'lightgrey' : props.isDragg
 display: flex;
 `;
 
-export default class Task extends Component {
+export default class Habit extends Component {
     render() {
         return (
             <Draggable
-                draggableId={this.props.task.id}
+                draggableId={this.props.habit.id}
                 index={this.props.index}
             >
                 {(provided, snapshot) => (
@@ -26,7 +26,8 @@ export default class Task extends Component {
                         isDragging={snapshot.isDragging}
                         {...provided.dragHandleProps}
                     >
-                        {this.props.task.content}
+                        {this.props.habit.habitPrompt}
+                        {"this is the habit"}
                     </Container>
                 )}
             </Draggable>

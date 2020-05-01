@@ -59,7 +59,8 @@ class DNDTutorial extends Component {
         newColumn: '',
     };
 
-    addColumn = () => {
+    addColumn = (e) => {
+        e.preventDefault();
         const currentColumns = [...this.state.columns]
         const newColumnOrder = [...this.state.columnOrder]
         const columnName = this.state.newColumn;
