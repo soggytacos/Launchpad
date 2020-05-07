@@ -10,17 +10,7 @@ const Container = styled.div`
 `;
 
 class InnerList extends PureComponent {
-    // PureComponent performs this same operation
-    // shouldComponentUpdate(nextProps) {
-    //     if(
-    //         nextProps.column === this.props.column &&
-    //         nextProps.habitMap === this.props.habitMap &&
-    //         nextProps.index === this.props.index
-    //     ) {
-    //         return false;
-    //     }
-    //     return true;
-    // }
+
     render() {
         const {column, habitMap, index} = this.props;
         const habits = column.habitIds.map(habitId => habitMap[habitId]);

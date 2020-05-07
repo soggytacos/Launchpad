@@ -8,6 +8,7 @@ import PromptSection from '../MorningJournal/Prompts/PromptSection';
 import DNDTutorial from "../../DNDTutorial/DNDTutorial";
 import HorizontalSection from "../../DNDTutorial/HorizonalSection";
 import HabitTracker from '../HabitTracker/HabitTracker';
+import DragAndDropArea from "../../components/draggables/DragAndDropArea";
 
 class Launchpad extends Component {
 
@@ -21,6 +22,7 @@ class Launchpad extends Component {
         return (
             <Aux>
                 <h1>Hello Colman!</h1>
+                <DragAndDropArea/>
                 <HabitTracker />
                 <Quotes />
                 <PromptSection />
