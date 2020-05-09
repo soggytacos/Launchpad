@@ -1,8 +1,8 @@
 import {CONSTANTS} from '../actions';
 
-export const addCard = (listID, text) => {
+export const addCard = (listID, habit) => {
     return {
         type: CONSTANTS.ADD_CARD,
-        payload: {text, listID}
+        payload: {habit, listID}
     };
 };

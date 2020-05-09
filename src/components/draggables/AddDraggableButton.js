@@ -6,7 +6,6 @@ import Button from '@material-ui/core/Button';
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import {connect} from 'react-redux';
 import {addList, addCard} from '../../actions';
 import InputLabel from "@material-ui/core/InputLabel";
@@ -17,7 +16,6 @@ class AddDraggableButton extends Component {
         formOpen: false,
         text: '',
         habit: {
-            id: '',
             habitPrompt: '',
             selectedAnswerType: '',
         },
@@ -38,7 +36,7 @@ class AddDraggableButton extends Component {
         this.setState({
             ...this.state,
             formOpen: true,
-            text: ''
+            text: '',
         })
     };
 
@@ -48,7 +46,6 @@ class AddDraggableButton extends Component {
             formOpen: false,
             text: '',
             habit: {
-                id: '',
                 habitPrompt: '',
                 selectedAnswerType: '',
             },
@@ -57,7 +54,11 @@ class AddDraggableButton extends Component {
 
     handleInputChange = e => {
         this.setState({
-            text: e.target.value
+            ...this.state,
+            text: e.target.value,
+            habit: {
+                ...this.state.habit
+            }
         })
     };
 
@@ -78,6 +79,7 @@ class AddDraggableButton extends Component {
 
         if (text) {
             this.setState({
+                formOpen: false,
                 text: ''
             })
             dispatch(addList(text))
@@ -87,13 +89,19 @@ class AddDraggableButton extends Component {
 
     handleAddCard = () => {
         const {dispatch, listID} = this.props;
-        const {text} = this.state;
+        let habit = {...this.state.habit};
+        habit.habitPrompt = this.state.text;
 
-        if (text) {
+        if (habit.habitPrompt) {
             this.setState({
-                text: ''
+                ...this.state,
+                text: '',
+                habit: {
+                    habitPrompt: '',
+                    selectedAnswerType: '',
+                }
             })
-            dispatch(addCard(listID, text))
+            dispatch(addCard(listID, habit))
         }
         this.closeForm()
         return;
@@ -172,7 +180,7 @@ class AddDraggableButton extends Component {
                             overflow: 'hidden'
                         }}
                     />
-                        {answerTypeDropDown}
+                        {list ? null : answerTypeDropDown}
                 </Card>
                 <div style={styles.formButtonGroup}>
                     <Button

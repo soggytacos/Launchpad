@@ -4,14 +4,29 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import {Draggable} from 'react-beautiful-dnd';
 import styled from 'styled-components';
+import Paragraph from "../answerTypes/Paragraph";
 
 
 const CardContainer = styled.div`
     margin-bottom: 8px;
 `;
 
-const DraggableCard = ({text, id, index}) => {
+const DraggableCard = ({habit, id, index}) => {
 
+    // {value: 'short', displayValue: 'Short Answer'},
+    // {value: 'paragraph', displayValue: 'Paragraph'},
+    // {value: 'duration', displayValue: 'Duration'},
+    // {value: 'checkbox', displayValue: 'Checkbox'},
+    // {value: 'radioFive', displayValue: 'Scale of 1 to 5'},
+    // {value: 'radioTen', displayValue: 'Scale of 1 to 10'},
+    // {value: 'number', displayValue: 'Number'},
+
+    let answerType = "answer Type not found";
+
+    if (habit.selectedAnswerType === 'paragraph') {
+        answerType = <Paragraph/>;
+    }
+    console.log(habit)
 
     return (
         <Draggable draggableId={String(id)} index={index}>
@@ -24,10 +39,10 @@ const DraggableCard = ({text, id, index}) => {
                     <Card>
                         <CardContent>
                             <Typography gutterBottom>
-                                {text}
+                                {habit.habitPrompt}
                             </Typography>
                             <Typography gutterBottom>
-                                {"Answer form"}
+                                {answerType}
                             </Typography>
                         </CardContent>
                     </Card>

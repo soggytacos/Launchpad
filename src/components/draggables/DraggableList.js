@@ -30,7 +30,7 @@ const DraggableList = ({title, cards, listID, index}) => {
                                 <DraggableCard
                                     key={card.id}
                                     index={index}
-                                    text={card.text}
+                                    habit={card.habit}
                                     id={card.id}
                                 />
                             ))}
