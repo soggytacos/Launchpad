@@ -3,17 +3,40 @@ import Icon from '@material-ui/core/Icon';
 import Card from '@material-ui/core/Card';
 import Textarea from 'react-textarea-autosize';
 import Button from '@material-ui/core/Button';
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import FormHelperText from "@material-ui/core/FormHelperText";
 import {connect} from 'react-redux';
 import {addList, addCard} from '../../actions';
+import InputLabel from "@material-ui/core/InputLabel";
 
 class AddDraggableButton extends Component {
 
     state = {
-        formOpen: false
+        formOpen: false,
+        text: '',
+        habit: {
+            id: '',
+            habitPrompt: '',
+            selectedAnswerType: '',
+        },
+        answerType: {
+            options: [
+                {value: 'short', displayValue: 'Short Answer'},
+                {value: 'paragraph', displayValue: 'Paragraph'},
+                {value: 'duration', displayValue: 'Duration'},
+                {value: 'checkbox', displayValue: 'Checkbox'},
+                {value: 'radioFive', displayValue: 'Scale of 1 to 5'},
+                {value: 'radioTen', displayValue: 'Scale of 1 to 10'},
+                {value: 'number', displayValue: 'Number'},
+            ]
+        },
     }
 
     openForm = () => {
         this.setState({
+            ...this.state,
             formOpen: true,
             text: ''
         })
@@ -21,7 +44,14 @@ class AddDraggableButton extends Component {
 
     closeForm = (e) => {
         this.setState({
-            formOpen: false
+            ...this.state,
+            formOpen: false,
+            text: '',
+            habit: {
+                id: '',
+                habitPrompt: '',
+                selectedAnswerType: '',
+            },
         })
     };
 
@@ -30,6 +60,17 @@ class AddDraggableButton extends Component {
             text: e.target.value
         })
     };
+
+    handleAnswerTypeChange = (ev) => {
+        let selectedAnswer = ev.target.value;
+        this.setState({
+            ...this.state,
+            habit: {
+                ...this.state.habit,
+                selectedAnswerType: selectedAnswer
+            }
+        })
+    }
 
     handleAddList = () => {
         const {dispatch} = this.props;
@@ -54,6 +95,7 @@ class AddDraggableButton extends Component {
             })
             dispatch(addCard(listID, text))
         }
+        this.closeForm()
         return;
     }
 
@@ -87,6 +129,27 @@ class AddDraggableButton extends Component {
 
         const buttonTitle = list ? 'Add List' : 'Add Card';
 
+        const answerTypes = [];
+        for (let key in this.state.answerType.options) {
+            answerTypes.push({
+                id: key,
+                value: this.state.answerType.options[key].value,
+                displayValue: this.state.answerType.options[key].displayValue
+            })
+        }
+        let answerTypeDropDown = (
+            <FormControl style={{width: "150px"}}>
+                <InputLabel>Answer Type</InputLabel>
+                <Select labelId="label" id="select" value={this.state.habit.selectedAnswerType}
+                        onChange={this.handleAnswerTypeChange}>
+                    {answerTypes.map(element => (
+                        <MenuItem key={element.id} value={element.value}>{element.displayValue}</MenuItem>
+                    ))
+                    }
+                </Select>
+            </FormControl>
+                )
+
         return (
             <div>
                 <Card style={{
@@ -98,7 +161,7 @@ class AddDraggableButton extends Component {
                     <Textarea
                         placeholder={placeholder}
                         autoFocus
-                        onBlur={this.closeForm}
+                        // onBlur={this.closeForm}
                         value={this.state.text}
                         onChange={this.handleInputChange}
                         style={{
@@ -109,6 +172,7 @@ class AddDraggableButton extends Component {
                             overflow: 'hidden'
                         }}
                     />
+                        {answerTypeDropDown}
                 </Card>
                 <div style={styles.formButtonGroup}>
                     <Button

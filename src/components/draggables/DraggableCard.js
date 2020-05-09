@@ -5,11 +5,14 @@ import Typography from "@material-ui/core/Typography";
 import {Draggable} from 'react-beautiful-dnd';
 import styled from 'styled-components';
 
+
 const CardContainer = styled.div`
     margin-bottom: 8px;
 `;
 
 const DraggableCard = ({text, id, index}) => {
+
+
     return (
         <Draggable draggableId={String(id)} index={index}>
             {provided => (
@@ -22,6 +25,9 @@ const DraggableCard = ({text, id, index}) => {
                         <CardContent>
                             <Typography gutterBottom>
                                 {text}
+                            </Typography>
+                            <Typography gutterBottom>
+                                {"Answer form"}
                             </Typography>
                         </CardContent>
                     </Card>

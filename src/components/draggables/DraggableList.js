@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const ListContainer = styled.div`
     background-color: #dfe3e6;
-    border-radios: 3px;
+    border-radius: 5px;
     width: 300px;
     padding: 8px;
     height: 100%;

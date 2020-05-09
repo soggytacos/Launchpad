@@ -44,7 +44,7 @@ class DragAndDropArea extends Component {
                             >
                                 {lists.map((list, index) => (
                                     <DraggableList
-                                        listId={list.id}
+                                        listID={list.id}
                                         key={list.id}
                                         title={list.title}
                                         cards={list.cards}
