@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Textarea from 'react-textarea-autosize';
 import Button from "@material-ui/core/Button";
 
-class Paragraph extends Component {
+class ShortAnswer extends Component {
 
     state = {
         text: ''
@@ -47,4 +47,4 @@ class Paragraph extends Component {
 }
 
 
-export default Paragraph;
+export default ShortAnswer;

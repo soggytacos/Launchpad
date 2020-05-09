@@ -5,6 +5,9 @@ import Typography from "@material-ui/core/Typography";
 import {Draggable} from 'react-beautiful-dnd';
 import styled from 'styled-components';
 import Paragraph from "../answerTypes/Paragraph";
+import RadioFive from "../answerTypes/RadioFive";
+import RadioTen from "../answerTypes/RadioTen";
+import ShortAnswer from "../answerTypes/ShortAnswer";
 
 
 const CardContainer = styled.div`
@@ -24,7 +27,13 @@ const DraggableCard = ({habit, id, index}) => {
     let answerType = "answer Type not found";
 
     if (habit.selectedAnswerType === 'paragraph') {
-        answerType = <Paragraph/>;
+        answerType = <Paragraph/>
+    } else if (habit.selectedAnswerType === 'radioFive'){
+        answerType = <RadioFive/>
+    } else if (habit.selectedAnswerType === 'radioTen'){
+        answerType = <RadioTen/>
+    } else if (habit.selectedAnswerType === 'short'){
+        answerType = <ShortAnswer/>
     }
     console.log(habit)
 
