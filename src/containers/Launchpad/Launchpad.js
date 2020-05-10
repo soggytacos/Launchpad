@@ -13,6 +13,7 @@ import DragAndDropArea from "../../components/habitDraggables/DragAndDropArea";
 import Paragraph from "../../components/answerTypes/Paragraph";
 import MorningMindsetArea from '../../components/morningMindsetDraggables/MorningMindsetArea';
 import styled from "styled-components";
+import ToDoDragAndDropArea from '../../components/toDoDraggables/ToDoDragAndDropArea'
 
 const Container = styled.div`
     margin: 8px;
@@ -42,6 +43,7 @@ class Launchpad extends Component {
                 </Container>
                 <MorningMindsetArea/>
                 <DragAndDropArea/>
+                <ToDoDragAndDropArea/>
                 {/*<HabitTracker />*/}
                 <Quotes />
                 {/*<PromptSection />*/}
