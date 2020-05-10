@@ -30,7 +30,7 @@ class Launchpad extends Component {
                     <Paragraph/>
                 </div>
                 <DragAndDropArea/>
-                <HabitTracker />
+                {/*<HabitTracker />*/}
                 <Quotes />
                 <PromptSection />
                 <MorningJournal />
