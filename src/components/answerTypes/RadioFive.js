@@ -1,6 +1,7 @@
 import React from 'react';
 import Radio from '@material-ui/core/Radio';
 import {FormControlLabel} from "@material-ui/core";
+import Button from "@material-ui/core/Button";
 
 export default function RadioButtons() {
     const [selectedValue, setSelectedValue] = React.useState('5');
@@ -91,6 +92,14 @@ export default function RadioButtons() {
                 label="5"
                 labelPlacement="top"
             />
+
+            <Button
+                // onMouseDown={}
+                varient="contained"
+                style={{color: 'white', backgroundColor: '#5aac44'}}
+            >
+                {"Submit Answer"}
+            </Button>
 
         </div>
     );

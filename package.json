@@ -45,6 +45,7 @@
     "react-duration-picker": "^1.1.1",
     "react-flip-move": "^3.0.4",
     "react-hour-minute": "^0.1.6",
+    "react-number-format": "^4.4.1",
     "react-redux": "^7.2.0",
     "react-textarea-autosize": "^7.1.2",
     "redux": "^4.0.5",

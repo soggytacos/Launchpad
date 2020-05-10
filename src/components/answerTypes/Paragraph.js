@@ -24,7 +24,8 @@ class Paragraph extends Component {
                     onChange={this.handleInputChange}
                     style={{
                         resize: 'none',
-                        width: '100%',
+                        width: '80%',
+                        minHeight: '100px',
                         outline: 'none',
                         borderStyle: 'groove',
                         borderColor: '#5aac44',

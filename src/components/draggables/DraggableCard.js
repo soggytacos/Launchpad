@@ -8,7 +8,9 @@ import Paragraph from "../answerTypes/Paragraph";
 import RadioFive from "../answerTypes/RadioFive";
 import RadioTen from "../answerTypes/RadioTen";
 import ShortAnswer from "../answerTypes/ShortAnswer";
-
+import Number from "../answerTypes/Number";
+import CheckboxLabel from "../answerTypes/CheckboxLabel";
+import DurationPicker from "../answerTypes/DurationPicker";
 
 const CardContainer = styled.div`
     margin-bottom: 8px;
@@ -34,6 +36,12 @@ const DraggableCard = ({habit, id, index}) => {
         answerType = <RadioTen/>
     } else if (habit.selectedAnswerType === 'short'){
         answerType = <ShortAnswer/>
+    } else if (habit.selectedAnswerType === 'number'){
+        answerType = <Number/>
+    } else if (habit.selectedAnswerType === 'checkbox'){
+        answerType = <CheckboxLabel/>
+    } else if (habit.selectedAnswerType === 'duration') {
+        answerType = <DurationPicker/>
     }
     console.log(habit)
 
