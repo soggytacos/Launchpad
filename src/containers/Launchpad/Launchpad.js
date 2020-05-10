@@ -13,6 +13,7 @@ import DragAndDropArea from "../../components/habitDraggables/DragAndDropArea";
 import Paragraph from "../../components/answerTypes/Paragraph";
 import MorningMindsetArea from '../../components/morningMindsetDraggables/MorningMindsetArea';
 import styled from "styled-components";
+import LaunchpadAppBar from "../../components/Layout/LaunchpadAppBar";
 
 const Container = styled.div`
     margin: 8px;
@@ -34,6 +35,7 @@ class Launchpad extends Component {
     render () {
         return (
             <Aux>
+                <LaunchpadAppBar/>
                 <h1>Hello Colman!</h1>
                 <Container>
                     <Typography>Morning Journal<span>Give me a prompt!</span></Typography>
