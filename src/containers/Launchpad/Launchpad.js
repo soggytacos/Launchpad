@@ -9,8 +9,19 @@ import PromptSection from '../MorningJournal/Prompts/PromptSection';
 import DNDTutorial from "../../DNDTutorial/DNDTutorial";
 import HorizontalSection from "../../DNDTutorial/HorizonalSection";
 import HabitTracker from '../HabitTracker/HabitTracker';
-import DragAndDropArea from "../../components/draggables/DragAndDropArea";
+import DragAndDropArea from "../../components/habitDraggables/DragAndDropArea";
 import Paragraph from "../../components/answerTypes/Paragraph";
+import MorningMindsetArea from '../../components/morningMindsetDraggables/MorningMindsetArea';
+import styled from "styled-components";
+
+const Container = styled.div`
+    margin: 8px;
+    border: 1px solid lightgrey;
+    border-radius: 8px;
+    
+    display: flex;
+    flex-direction: column;
+`;
 
 class Launchpad extends Component {
 
@@ -24,20 +35,21 @@ class Launchpad extends Component {
         return (
             <Aux>
                 <h1>Hello Colman!</h1>
-                <div>
+                <Container>
                     <Typography>Morning Journal<span>Give me a prompt!</span></Typography>
 
                     <Paragraph/>
-                </div>
+                </Container>
+                <MorningMindsetArea/>
                 <DragAndDropArea/>
                 {/*<HabitTracker />*/}
                 <Quotes />
-                <PromptSection />
-                <MorningJournal />
-                <Prompts />
+                {/*<PromptSection />*/}
+                {/*<MorningJournal />*/}
+                {/*<Prompts />*/}
                 <ToDo />
                 {/*<DNDTutorial />*/}
-                <HorizontalSection />
+                {/*<HorizontalSection />*/}
             </Aux>
         )
     }
