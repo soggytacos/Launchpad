@@ -18,14 +18,6 @@ const CardContainer = styled.div`
 
 const DraggableCard = ({habit, id, index}) => {
 
-    // {value: 'short', displayValue: 'Short Answer'},
-    // {value: 'paragraph', displayValue: 'Paragraph'},
-    // {value: 'duration', displayValue: 'Duration'},
-    // {value: 'checkbox', displayValue: 'Checkbox'},
-    // {value: 'radioFive', displayValue: 'Scale of 1 to 5'},
-    // {value: 'radioTen', displayValue: 'Scale of 1 to 10'},
-    // {value: 'number', displayValue: 'Number'},
-
     let answerType = "answer Type not found";
 
     if (habit.selectedAnswerType === 'paragraph') {

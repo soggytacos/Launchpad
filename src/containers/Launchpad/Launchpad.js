@@ -36,7 +36,7 @@ class Launchpad extends Component {
                 <MorningJournal />
                 <Prompts />
                 <ToDo />
-                <DNDTutorial />
+                {/*<DNDTutorial />*/}
                 <HorizontalSection />
             </Aux>
         )
