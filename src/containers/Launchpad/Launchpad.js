@@ -37,15 +37,14 @@ class Launchpad extends Component {
             <Aux>
                 <LaunchpadAppBar/>
                 <h1>Hello Colman!</h1>
+                <Quotes />
                 <Container>
                     <Typography>Morning Journal<span>Give me a prompt!</span></Typography>
-
                     <Paragraph/>
                 </Container>
                 <MorningMindsetArea/>
                 <DragAndDropArea/>
                 {/*<HabitTracker />*/}
-                <Quotes />
                 {/*<PromptSection />*/}
                 {/*<MorningJournal />*/}
                 {/*<Prompts />*/}

@@ -29,7 +29,7 @@ export default function CheckboxLabel() {
         <FormGroup row>
             <FormControlLabel
                 control={<GreenCheckbox checked={state.checkedG} onChange={handleChange} name="checkedG"/>}
-                label="Custom color"
+                label="Complete"
             />
         </FormGroup>
     );
